@@ -1,18 +1,14 @@
 import React, {useState} from 'react'
 
 
-export default function Speed() {
+export default function Speed({wpm, setWpm}) {
 
-    const [speed, updateSpeed] = useState(120)
-
-    const increaseSpeed = (e) => {
-        console.log(e.target.value)
-        return updateSpeed(speed + 1)
+    const increaseWPM = (e) => {
+        return setWpm(wpm + 1)
     }
 
-    const decreaseSpeed = (e) => {
-        console.log(e.target.value)
-        return updateSpeed(speed - 1)
+    const decreaseWPM = (e) => {
+        return setWpm(wpm - 1) 
     }
 
     return (
@@ -20,9 +16,9 @@ export default function Speed() {
             <p className="speed--container-title">Speed</p>
             <div className="speed--container">
                 
-                <button className="speedButton" onClick={decreaseSpeed}>-</button>
-                <p>{speed} wpm</p>
-                <button className="speedButton" onClick={increaseSpeed}>+</button>
+                <button className="speedButton" onClick={decreaseWPM}>-</button>
+                <p>{wpm} wpm</p>
+                <button className="speedButton" onClick={increaseWPM}>+</button>
             </div>
         </div>
     )

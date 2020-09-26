@@ -1,106 +1,99 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./assets/reset.css";
 import "./assets/style.css";
 import Speed from "./components/Speed";
 import Categories from "./components/Categories.js";
-import Words from "./data";
+import {getWords} from "./data";
 
 import { Container, Row, Col } from "reactstrap";
 
-const renderWord = (words) => { 
-  return words.map(word => word.text)
-}
+const calculateInterval = (wpm) => {
+  return (60 / wpm) * 1000 * 8;
+};
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+function App() {
+  const [word, setWord] = useState("word");
+  const [words, setWords] = useState(getWords());
+  const [isRunning, setIsRunning] = useState(false);
+  const [wpm, setWpm] = useState(120);
 
-    this.state = {
-      word: "word",
-      usedWords: [],
-      wpm: 120
-    };
-  }
-
-   
-  // When start is click, set interval of words to WPM value (Words per minute, similar to BPM)
-  handleRunStart = () => {
-    var interval = (60 / this.state.wpm) * 1000;
-    var ranTimes = 0;
-    var myTimeout = setInterval(function() {
-        console.log('test' + ranTimes);
-        ranTimes++;
-        if (ranTimes >= this.state.wpm) {
-            clearInterval(myTimeout);
-        }
-    }, interval);
-  }
-
-  
-
-  updateWord = () => {
+  const updateWord = () => {
+    const [pickedWord, ...remainingWords] = words;
     
-    let arr = renderWord(Words)
-    let usedWord = arr[Math.floor(Math.random() * arr.length)]
-    this.setState((state) => {
+    setWord(pickedWord);
+    setWords(remainingWords.length > 0 ? remainingWords : getWords())
+  };
 
-      return {
-        usedWords: state.usedWords.concat(usedWord),
-        word: usedWord
+  // invoked when check box is changed
+  const isChecked = () => {
+    // get all the checked categories
+    // use setWords(getWords([...categories]))
+  }
+
+  useEffect(() => {
+    const interval = calculateInterval(wpm);
+
+    const intervalRef = setInterval(() => {
+      if (isRunning) {
+        updateWord();
       }
-      
-    })
+    }, interval);
 
-    console.log('used words: ' + this.state.usedWords)
-  }
+    return () => clearInterval(intervalRef);
+  });
 
-  render() {
+  // When start is clicked, set interval of words to WPM value (Words per minute, similar to BPM)
+  const toggleRunning = () => {
+    setIsRunning(!isRunning);
+  };
 
-    return (
-      <div className="App">
-        <Container>
-          <header>
-            <h1>Harry Mack</h1>
-            <p>Random Word Generator</p>
-          </header>
-          <main>
-            <Row>
-              <Col sm="8">
-                <Row className="h-100">
-                  <Col sm="12">
-                    <div className="wordBox">
-                      <p className="word">{this.state.word}</p>
+  console.log(wpm)
+
+  return (
+    <div className="App">
+      <Container>
+        <header>
+          <h1>Harry Mack</h1>
+          <p>Random Word Generator</p>
+        </header>
+        <main>
+          <Row>
+            <Col sm="8">
+              <Row className="h-100">
+                <Col sm="12">
+                  <div className="wordBox">
+                    <p className="word">{word}</p>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+
+            <Col sm="4">
+              <Row>
+                <Col sm="12">
+                  <button
+                    className="startButton mt-5 mt-sm-0"
+                    onClick={toggleRunning}
+                  >
+                    {isRunning ? "Stop" : "Start"}
+                  </button>
+                </Col>
+                <Col sm="12">
+                  <div className="preferences">
+                    <h3>Preferences</h3>
+                    <div className="preferences--container">
+                      <Speed wpm={wpm} setWpm={setWpm}/>
+                      <Categories name="name" />
                     </div>
-                  </Col>
-                </Row>
-              </Col>
-
-              <Col sm="4">
-                <Row>
-                  <Col sm="12">
-                    <button
-                      className="startButton mt-5 mt-sm-0"
-                      onClick={this.updateWord} >
-                      Start
-                    </button>
-                  </Col>
-                  <Col sm="12">
-                    <div className="preferences">
-                      <h3>Preferences</h3>
-                      <div className="preferences--container">
-                        <Speed />
-                        <Categories name="name"/>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </main>
-        </Container>
-      </div>
-    );
-  }
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </main>
+      </Container>
+    </div>
+  );
 }
 
 export default App;
