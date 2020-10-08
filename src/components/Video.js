@@ -1,7 +1,8 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-export default function Video({ videoId }) {
+export default function Video({ videoId, toggleIsRunning }) {
+
   const opts = {
     // height: '390',
     // width: '640',
@@ -13,9 +14,13 @@ export default function Video({ videoId }) {
 
   const videoOnReady = (event) => {
     // access to player in all event handlers via event.target
-    console.log(event.target)
     event.target.pauseVideo();
   };
+  // const videoOnPlay = (event) => {
+  //   console.log(event.target)
 
-  return <YouTube videoId={videoId} opts={opts} onReady={videoOnReady}/>;
+  //   event.target.pauseVideo()
+  // }
+
+  return <YouTube videoId={videoId} opts={opts} onReady={videoOnReady} onStateChange={toggleIsRunning}/>;
 }
