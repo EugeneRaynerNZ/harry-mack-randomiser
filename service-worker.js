@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/harry-mack-randomiser/precache-manifest.11e92bfb1a06ea5c6995ca995159b94c.js"
+  "/harry-mack-randomiser/precache-manifest.e696387a030a65b54b4910443aaff3c5.js"
 );
 
 self.addEventListener('message', (event) => {
