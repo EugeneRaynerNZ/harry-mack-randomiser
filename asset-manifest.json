@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/harry-mack-randomiser/static/css/main.728c0f14.chunk.css",
+    "main.js": "/harry-mack-randomiser/static/js/main.8c2babe7.chunk.js",
+    "main.js.map": "/harry-mack-randomiser/static/js/main.8c2babe7.chunk.js.map",
+    "runtime-main.js": "/harry-mack-randomiser/static/js/runtime-main.fbb232ed.js",
+    "runtime-main.js.map": "/harry-mack-randomiser/static/js/runtime-main.fbb232ed.js.map",
+    "static/css/2.d9ad5f5c.chunk.css": "/harry-mack-randomiser/static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.4ff57aef.chunk.js": "/harry-mack-randomiser/static/js/2.4ff57aef.chunk.js",
+    "static/js/2.4ff57aef.chunk.js.map": "/harry-mack-randomiser/static/js/2.4ff57aef.chunk.js.map",
+    "index.html": "/harry-mack-randomiser/index.html",
+    "precache-manifest.11e92bfb1a06ea5c6995ca995159b94c.js": "/harry-mack-randomiser/precache-manifest.11e92bfb1a06ea5c6995ca995159b94c.js",
+    "service-worker.js": "/harry-mack-randomiser/service-worker.js",
+    "static/css/2.d9ad5f5c.chunk.css.map": "/harry-mack-randomiser/static/css/2.d9ad5f5c.chunk.css.map",
+    "static/css/main.728c0f14.chunk.css.map": "/harry-mack-randomiser/static/css/main.728c0f14.chunk.css.map",
+    "static/js/2.4ff57aef.chunk.js.LICENSE.txt": "/harry-mack-randomiser/static/js/2.4ff57aef.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fbb232ed.js",
+    "static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.4ff57aef.chunk.js",
+    "static/css/main.728c0f14.chunk.css",
+    "static/js/main.8c2babe7.chunk.js"
+  ]
+}
